@@ -67,11 +67,11 @@ M.polish_hl = {
     ["@function.builtin"] = { bold = true },
     ["@function.call"] = { bold = true },
     ["@constructor"] = { fg = M.base_30.purple },
-    ["@parameter"] = { fg = M.base_30.white },
-    ["@namespace"] = { fg = M.base_30.deep_black },
+    ["@variable.parameter"] = { fg = M.base_30.white },
+    ["@module"] = { fg = M.base_30.deep_black },
     ["@symbol"] = { fg = M.base_30.purple },
     ["@keyword"] = { fg = M.base_30.purple },
-    ["@method.call"] = { bold = true },
+    ["@function.method.call"] = { bold = true },
   },
 
   telescope = {

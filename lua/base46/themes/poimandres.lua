@@ -70,12 +70,11 @@ M.polish_hl = {
     ["@constructor"] = { fg = M.base_30.grey_fg },
     ["@property"] = { fg = M.base_30.seablue },
     ["@punctuation.delimiter"] = { fg = M.base_30.seablue },
-    ["@punctuation.special"] = { fg = M.base_30.purple },
+    ["@markup.list"] = { fg = M.base_30.purple },
     ["@punctuation.bracket"] = { fg = M.base_30.purple },
     ["@type.builtin"] = { link = "Boolean" },
     ["@tag.attribute"] = { fg = M.base_30.purple, italic = true, link = "" },
     ["Label"] = { fg = M.base_30.seablue },
-    ["@none"] = { fg = M.base_30.dark_purple },
     ["@constructor.tsx"] = { link = "Tag" },
   },
 
