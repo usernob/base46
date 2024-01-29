@@ -71,7 +71,6 @@ M.polish_hl = {
     ["@string.special.url"] = { fg = M.base_30.green },
     ["@markup.link.url"] = { fg = M.base_30.green },
     ["@punctuation.bracket"] = { fg = M.base_30.yellow },
-    ["@constant.lua"] = { fg = M.base_30.white },
   },
 
   telescope = {
