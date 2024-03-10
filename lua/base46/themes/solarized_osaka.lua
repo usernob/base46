@@ -5,7 +5,7 @@
 local M = {}
 
 M.base_30 = {
-  white = "#abb2bf",
+  white = "#9eabac",
   darker_black = "#011923",
   black = "#011219",
   black2 = "#02202D",
@@ -43,7 +43,7 @@ M.base_16 = {
   base02 = M.base_30.one_bg2,
   base03 = M.base_30.one_bg3,
   base04 = "#1b4651",
-  base05 = "#abb2bf",
+  base05 = M.base_30.white,
   base06 = "#eee8d5",
   base07 = "#fdf6e3",
   base08 = "#268bd2",
