@@ -1,7 +1,36 @@
 ## NvChad theme plugin
 
 - This plugin's a whole re-write of Norcalli's plugin.
-- This theme plugin is supposed to be used along with [NvChad](https://github.com/NvChad/NvChad) only
+- It should be used along with [NvChad](https://github.com/NvChad/NvChad) for best experience.
+- Non NvChad users can have the nvconfig module on the path
+
+## Supported Integrations
+
+- Bufferline.nvim
+- Cmp.nvim
+- Codeactionmenu
+- Nvim-dap
+- Nvim-webdevicons
+- Hop.nvim
+- Vim-illuminate
+- Lsp ( diagnostics )
+- Nvim Navic
+- LspSaga
+- Mason.nvim
+- Notify.nvim
+- Nvim-tree
+- Telescope.nvim
+- Rainbow-delimiters.nvim
+- Todo.nvim
+- Nvim-treesitter
+- Lsp Semantic tokens
+- Trouble.nvim 
+- Whichkey.nvim
+
+## Configuration
+
+- Base46 is configured by [nvconfig](https://github.com/NvChad/NvChad/blob/starter/lua/nvconfig.lua) in your path. 
+- Read the [themeing docs](https://nvchad.com/docs/config/theming)
 
 ## Highlight command
 
