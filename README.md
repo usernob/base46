@@ -123,11 +123,11 @@ return M
 
 ## Contribute
 
-- Send PR in the https://github.com/NvChad/base46/tree/v2.0/lua/base46/themes
+- Send PR in the https://github.com/NvChad/base46/tree/v2.5/lua/base46/themes
 
 ### Testing your theme
 
-- Just place your theme file in `custom/themes` folder 
+- Just place your theme file in your `/lua/themes` folder
 - And select the theme with theme switcher or change in chadrc
 
 ## Tips
