@@ -33,11 +33,6 @@ local M = {
     bg = colors.lightbg,
   },
 
-  St_EmptySpace2 = {
-    fg = colors.grey,
-    bg = statusline_bg,
-  },
-
   St_file = {
     bg = colors.lightbg,
     fg = colors.white,
