@@ -111,6 +111,6 @@ M.polish_hl = {
   },
 }
 
-M = require("base46").override_theme(M, "material_darker")
+M = require("base46").override_theme(M, "material-darker")
 
 return M
