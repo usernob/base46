@@ -1,5 +1,5 @@
 -- Credits to original theme https://github.com/kepano/flexoki/
--- This is a modified version of it
+-- This is a modified version of it, uses its dark colors for syntax
 
 -- return colors
 local M = {}
@@ -16,21 +16,21 @@ M.base_30 = {
   grey_fg = "#adaba3",
   grey_fg2 = "#a3a19a",
   light_grey = "#94928b",
-  red = "#AF3029",
-  baby_pink = "#CE5D97",
-  pink = "#A02F6F",
-  green = "#66800B",
-  vibrant_green = "#879A39",
-  nord_blue = "#4385BE",
-  blue = "#205EA6",
-  yellow = "#AD8301",
-  sun = "#D0A215",
-  purple = "#8265c0",
-  dark_purple = "#5E409D",
-  teal = "#519ABA",
-  orange = "#BC5215",
-  cyan = "#24837B",
+  red = "#D14D41",
+  baby_pink = "#d574a6",
+  pink = "#CE5D97",
   line = "#d6d4ca", -- for lines like vertsplit
+  green = "#879A39",
+  vibrant_green = "#66800B",
+  nord_blue = "#4385BE",
+  blue = "#4385BE",
+  yellow = "#D0A215",
+  sun = "#d2a721",
+  purple = "#8B7EC8",
+  dark_purple = "#8376bc",
+  teal = "#008080",
+  orange = "#DA702C",
+  cyan = "#3AA99F",
   statusline_bg = "#f7f4e9",
   lightbg = "#ebe8dd",
   pmenu_bg = "#3AA99F",
@@ -48,7 +48,7 @@ M.base_16 = {
   base07 = "#c8ccd4",
   base08 = M.base_30.red,
   base09 = M.base_30.orange,
-  base0A = M.base_30.dark_purple,
+  base0A = M.base_30.purple,
   base0B = M.base_30.green,
   base0C = M.base_30.cyan,
   base0D = M.base_30.blue,
