@@ -73,6 +73,7 @@ return {
   ["@markup.link.label"] = { fg = theme.base0C },
   ["@markup.list"] = { fg = theme.base08 },
   ["@markup.strong"] = { bold = true },
+  ["@markup.underline"] = { underline = true },
   ["@markup.italic"] = { italic = true },
   ["@markup.strikethrough"] = { strikethrough = true },
   ["@markup.quote"] = { bg = base30.black2 },
