@@ -1,4 +1,5 @@
 local colors = require("base46").get_theme_tb "base_30"
+local colorize = require("base46.colors").change_hex_lightness
 
 return {
   -- LSP References
@@ -15,4 +16,9 @@ return {
 
   RenamerTitle = { fg = colors.black, bg = colors.red },
   RenamerBorder = { fg = colors.red },
+
+  LspInlayHint = {
+    bg = colorize(colors.black2, vim.o.bg == "dark" and 0 or 3),
+    fg = colors.light_grey,
+  },
 }
