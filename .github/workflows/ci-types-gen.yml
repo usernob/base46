@@ -3,7 +3,7 @@ name: CI update NvChad types
 on:
   push:
     branches:
-      - V2.5
+      - v2.5
 
 jobs:
   update-nvchad-types:
