@@ -20,7 +20,7 @@ return {
   ["@string.regex"] = { fg = theme.base0C },
   ["@string.escape"] = { fg = theme.base0C },
   ["@character"] = { fg = theme.base08 },
-  ["@character.special"] = { fg = theme.base08 },
+  -- ["@character.special"] = { fg = theme.base08 },
   ["@number"] = { fg = theme.base09 },
   ["@number.float"] = { fg = theme.base09 },
 
