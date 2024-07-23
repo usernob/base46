@@ -45,7 +45,7 @@ M.merge_tb = function(...)
   return vim.tbl_deep_extend("force", ...)
 end
 
-local change_hex_lightness = require("base46.colors").change_hex_lightness
+local blend_colors = require("base46.colors").blend_color
 
 -- turns color var names in hl_override/hl_add to actual colors
 -- hl_add = { abc = { bg = "one_bg" }} -> bg = colors.one_bg
@@ -56,10 +56,26 @@ M.turn_str_to_color = function(tb)
   for _, hlgroups in pairs(copy) do
     for opt, val in pairs(hlgroups) do
       if opt == "fg" or opt == "bg" or opt == "sp" then
-        if not (type(val) == "string" and val:sub(1, 1) == "#" or val == "none" or val == "NONE") then
-          hlgroups[opt] = type(val) == "table" and change_hex_lightness(colors[val[1]], val[2]) or colors[val]
+        if type(val) == "string" and val:sub(1, 1) == "#" or val == "none" or val == "NONE" then
+          goto continue
+        end
+
+        if type(val) == "string" then
+          hlgroups[opt] = colors[val]
+        end
+
+        if type(val) == "table" then
+          local hex1 = colors[val[3]] or colors.black
+          local hex2 = colors[val[1]]
+          if not hex2 then
+            goto continue
+          end
+
+          local alpha = val[2] or 100
+          hlgroups[opt] = blend_colors(hex1, hex2, alpha)
         end
       end
+      ::continue::
     end
   end
 

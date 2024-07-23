@@ -214,4 +214,27 @@ M.compute_gradient = function(hex1, hex2, steps)
   return gradient
 end
 
+--- Blend two colors
+--- @param hex1 string The firt hex color a.k.a backward color
+--- @param hex2 string The second hex color a.k.a forward color
+--- @param percent integer The percent to blend (0 - 100)
+--- @return string
+M.blend_color = function(hex1, hex2, percent)
+  local r1, g1, b1 = M.hex2rgb(hex1)
+  local r2, g2, b2 = M.hex2rgb(hex2)
+
+  if percent < 0 then
+    percent = 0
+  elseif percent > 100 then
+    percent = 100
+  end
+  percent = percent / 100
+
+  local r = r1 + (r2 - r1) * percent
+  local g = g1 + (g2 - g1) * percent
+  local b = b1 + (b2 - b1) * percent
+
+  return M.rgb2hex(r, g, b)
+end
+
 return M
