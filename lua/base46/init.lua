@@ -47,6 +47,12 @@ end
 
 local blend_colors = require("base46.colors").blend_color
 
+--- @param val string
+--- @return boolean
+M.is_hex_color = function(val)
+  return val:sub(1, 1) == "#"
+end
+
 -- turns color var names in hl_override/hl_add to actual colors
 -- hl_add = { abc = { bg = "one_bg" }} -> bg = colors.one_bg
 M.turn_str_to_color = function(tb)
@@ -56,7 +62,7 @@ M.turn_str_to_color = function(tb)
   for _, hlgroups in pairs(copy) do
     for opt, val in pairs(hlgroups) do
       if opt == "fg" or opt == "bg" or opt == "sp" then
-        if type(val) == "string" and val:sub(1, 1) == "#" or val == "none" or val == "NONE" then
+        if type(val) == "string" and M.is_hex_color(val) or val == "none" or val == "NONE" then
           goto continue
         end
 
@@ -66,7 +72,21 @@ M.turn_str_to_color = function(tb)
 
         if type(val) == "table" then
           local hex1 = colors[val[3]] or colors.black
-          local hex2 = colors[val[1]]
+          if val[3] and M.is_hex_color(val[3]) then
+            hex1 = val[3]
+          end
+
+          if not val[1] then
+            goto continue
+          end
+          local hex2
+
+          if M.is_hex_color(val[1]) then
+            hex2 = val[1]
+          else
+            hex2 = colors[val[1]]
+          end
+
           if not hex2 then
             goto continue
           end
