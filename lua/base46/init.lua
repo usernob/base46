@@ -168,7 +168,7 @@ M.override_theme = function(default_theme, theme_name)
 end
 
 M.toggle_theme = function()
-  local themes = opts.theme_toggle
+  local themes = uiconfig.theme_toggle or opts.theme_toggle
 
   if opts.theme ~= themes[1] and opts.theme ~= themes[2] then
     vim.notify "Set your current theme to one of those mentioned in the theme_toggle table (chadrc)"
@@ -178,9 +178,15 @@ M.toggle_theme = function()
   g.icon_toggled = not g.icon_toggled
   g.toggle_theme_icon = g.icon_toggled and "   " or "   "
 
-  opts.theme = (themes[1] == opts.theme and themes[2]) or themes[1]
+  if uiconfig.theme ~= nil then
+    uiconfig.theme = (themes[1] == uiconfig.theme and themes[2]) or themes[1]
+  else
+    opts.theme = (themes[1] == opts.theme and themes[2]) or themes[1]
+  end
 
-  local old_theme = dofile(vim.fn.stdpath "config" .. "/lua/chadrc.lua").base46.theme
+  local chadrc = dofile(vim.fn.stdpath "config" .. "/lua/chadrc.lua")
+  local old_theme = chadrc.ui.theme or chadrc.base46.theme
+
   require("nvchad.utils").replace_word('theme = "' .. old_theme, 'theme = "' .. opts.theme)
   M.load_all_highlights()
 end
