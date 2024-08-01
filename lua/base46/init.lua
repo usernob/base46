@@ -121,13 +121,10 @@ M.tb_2str = function(tb)
   return result
 end
 
-M.saveStr_to_cache = function(filename, str)
+M.str_to_cache = function(filename, str)
   -- Thanks to https://github.com/nullchilly and https://github.com/EdenEast/nightfox.nvim
   -- It helped me understand string.dump stuff
-
-  local defaults_cond = (filename == "defaults" and "vim.o.tgc=true vim.o.bg='" .. M.get_theme_tb "type" .. "'") or ""
-
-  local lines = "return string.dump(function()" .. defaults_cond .. str .. "end, true)"
+  local lines = "return string.dump(function()" .. str .. "end, true)"
   local file = io.open(vim.g.base46_cache .. filename, "wb")
 
   if file then
@@ -141,19 +138,39 @@ M.compile = function()
     vim.fn.mkdir(vim.g.base46_cache, "p")
   end
 
+  M.str_to_cache("term", require "base46.term")
+
+  local all_str = ""
+
   for _, name in ipairs(integrations) do
-    M.saveStr_to_cache(name, M.tb_2str(M.get_integration(name)))
+    local hl_str = M.tb_2str(M.get_integration(name))
+
+    if name == "defaults" then
+      hl_str = hl_str .. " vim.o.tgc=true vim.o.bg='" .. M.get_theme_tb "type" .. "'"
+    end
+
+    if opts.compile_onefile then
+      all_str = all_str .. hl_str
+    else
+      M.str_to_cache(name, hl_str)
+    end
   end
 
-  M.saveStr_to_cache("term", require "base46.term")
+  if opts.compile_onefile then
+    M.str_to_cache("all", all_str)
+  end
 end
 
 M.load_all_highlights = function()
   require("plenary.reload").reload_module "base46"
   M.compile()
 
-  for _, filename in ipairs(integrations) do
-    dofile(vim.g.base46_cache .. filename)
+  if not opts.compile_all then
+    for _, name in ipairs(integrations) do
+      dofile(vim.g.base46_cache .. name)
+    end
+  else
+    dofile(vim.g.base46_cache .. "all")
   end
 
   -- update blankline
@@ -167,6 +184,7 @@ M.override_theme = function(default_theme, theme_name)
   return M.merge_tb(default_theme, changed_themes.all or {}, changed_themes[theme_name] or {})
 end
 
+--------------------------- user functions ----------------------------------------------------------
 M.toggle_theme = function()
   local themes = uiconfig.theme_toggle or opts.theme_toggle
 
