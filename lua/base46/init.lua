@@ -146,7 +146,7 @@ M.compile = function()
     local hl_str = M.tb_2str(M.get_integration(name))
 
     if name == "defaults" then
-      hl_str = hl_str .. " vim.o.tgc=true vim.o.bg='" .. M.get_theme_tb "type" .. "'"
+      hl_str = "vim.o.tgc=true vim.o.bg='" .. M.get_theme_tb "type" .. "' " .. hl_str
     end
 
     if opts.compile_onefile then
