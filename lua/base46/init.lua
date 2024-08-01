@@ -2,6 +2,7 @@ local M = {}
 local g = vim.g
 local uiconfig = require("nvconfig").ui
 local opts = require("nvconfig").base46
+local cache_path = vim.g.base46_cache
 
 local integrations = {
   "blankline",
@@ -125,7 +126,7 @@ M.str_to_cache = function(filename, str)
   -- Thanks to https://github.com/nullchilly and https://github.com/EdenEast/nightfox.nvim
   -- It helped me understand string.dump stuff
   local lines = "return string.dump(function()" .. str .. "end, true)"
-  local file = io.open(vim.g.base46_cache .. filename, "wb")
+  local file = io.open(cache_path .. filename, "wb")
 
   if file then
     file:write(loadstring(lines)())
@@ -135,7 +136,7 @@ end
 
 M.compile = function()
   if not vim.loop.fs_stat(vim.g.base46_cache) then
-    vim.fn.mkdir(vim.g.base46_cache, "p")
+    vim.fn.mkdir(cache_path, "p")
   end
 
   M.str_to_cache("term", require "base46.term")
@@ -213,9 +214,9 @@ M.toggle_transparency = function()
   opts.transparency = not opts.transparency
   M.load_all_highlights()
 
-  local old_transparency_val = dofile(vim.fn.stdpath "config" .. "/lua/chadrc.lua").transparency
-  local new_transparency_val = "transparency = " .. tostring(opts.transparency)
-  require("nvchad.utils").replace_word("transparency = " .. tostring(old_transparency_val), new_transparency_val)
+  local old = dofile(vim.fn.stdpath "config" .. "/lua/chadrc.lua").transparency
+  local new = "transparency = " .. tostring(opts.transparency)
+  require("nvchad.utils").replace_word("transparency = " .. tostring(old), new)
 end
 
 return M
